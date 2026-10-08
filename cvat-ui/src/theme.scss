@@ -1,0 +1,80 @@
+// Copyright (C) CVAT.ai Corporation
+//
+// SPDX-License-Identifier: MIT
+
+// Values of theme-dependent colors declared in base.scss
+// The active theme is set by the data-theme attribute, see utils/theme.ts
+
+:root,
+[data-theme='light'] {
+    color-scheme: light;
+
+    --cvat-header-color: #d8d8d8;
+    --cvat-text-color: #303030;
+    --cvat-text-color-secondary: rgba(0, 0, 0, 45%);
+    --cvat-annotation-progress-color: #c1c1c1;
+    --cvat-border-color-1: #f0f0f0;
+    --cvat-background-color-1: white;
+    --cvat-background-color-2: #f1f1f1;
+    --cvat-notification-background-color-1: #d9ecff;
+    --cvat-player-buttons-color: #242424;
+    --cvat-objects-bar-tabs-color: #bebebe;
+    --cvat-objects-bar-icons-color: #242424;
+    --cvat-active-label-background-color: #d8ecff;
+    --cvat-object-item-border-color: rgba(0, 0, 0, 70%);
+    --cvat-scrollbar-thumb-color: #babac0;
+
+    // channels to compose translucent colors: rgba(var(--cvat-surface-rgb), 50%)
+    --cvat-surface-rgb: 255, 255, 255;
+    --cvat-contrast-rgb: 0, 0, 0;
+}
+
+[data-theme='dark'] {
+    color-scheme: dark;
+
+    --cvat-header-color: #2a2a2a;
+    --cvat-text-color: rgba(255, 255, 255, 85%);
+    --cvat-text-color-secondary: rgba(255, 255, 255, 45%);
+    --cvat-annotation-progress-color: #5a5a5a;
+    --cvat-border-color-1: #303030;
+    --cvat-background-color-1: #1f1f1f;
+    --cvat-background-color-2: #141414;
+    --cvat-notification-background-color-1: #112a45;
+    --cvat-player-buttons-color: #d0d0d0;
+    --cvat-objects-bar-tabs-color: #3a3a3a;
+    --cvat-objects-bar-icons-color: #d0d0d0;
+    --cvat-active-label-background-color: #112a45;
+    --cvat-object-item-border-color: rgba(255, 255, 255, 70%);
+    --cvat-scrollbar-thumb-color: #5a5a5a;
+    --cvat-surface-rgb: 31, 31, 31;
+    --cvat-contrast-rgb: 255, 255, 255;
+
+    // custom icons are drawn in black, make them follow the text color
+    .anticon svg {
+        &[fill='black'],
+        &[fill='#000'],
+        [fill='black'],
+        [fill='#000'],
+        [fill='#4A4A4A'],
+        [fill='#3B3B3B'] {
+            fill: currentcolor;
+        }
+
+        &[stroke='black'],
+        &[stroke='#000'],
+        [stroke='black'],
+        [stroke='#000'],
+        [stroke='#4A4A4A'],
+        [stroke='#3B3B3B'] {
+            stroke: currentcolor;
+        }
+    }
+
+    .cvat-header .cvat-logo-icon img {
+        filter: invert(1) hue-rotate(180deg);
+    }
+}
+
+body {
+    background: var(--cvat-background-color-2);
+}

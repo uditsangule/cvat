@@ -127,7 +127,7 @@ services:
     environment:
       <<: *backend-env
       CVAT_REDIS_INMEM_PASSWORD: ''
-      NUMPROCS: 1
+      NUMPROCS: 2
     command: run worker notifications cleaning
     volumes:
       - cvat_data:/home/django/data
@@ -143,7 +143,7 @@ services:
     depends_on: *backend-deps
     environment:
       <<: *backend-env
-      NUMPROCS: 2
+      NUMPROCS: 8
     command: run worker import --with-scheduler
     volumes:
       - cvat_data:/home/django/data
@@ -159,7 +159,7 @@ services:
     depends_on: *backend-deps
     environment:
       <<: [*backend-env, *clickhouse-env]
-      NUMPROCS: 2
+      NUMPROCS: 8
     command: run worker export --with-scheduler
     volumes:
       - cvat_data:/home/django/data
@@ -175,7 +175,7 @@ services:
     depends_on: *backend-deps
     environment:
       <<: *backend-env
-      NUMPROCS: 1
+      NUMPROCS: 2
     command: run worker annotation
     volumes:
       - cvat_data:/home/django/data
@@ -191,7 +191,7 @@ services:
     depends_on: *backend-deps
     environment:
       <<: *backend-env
-      NUMPROCS: 1
+      NUMPROCS: 2
     command: run worker webhooks --with-scheduler
     volumes:
       - cvat_data:/home/django/data
@@ -223,7 +223,7 @@ services:
     depends_on: *backend-deps
     environment:
       <<: *backend-env
-      NUMPROCS: 2
+      NUMPROCS: 4
     command: run worker chunks
     volumes:
       - cvat_data:/home/django/data
@@ -239,7 +239,7 @@ services:
     depends_on: *backend-deps
     environment:
       <<: *backend-env
-      NUMPROCS: 1
+      NUMPROCS: 4
     command: run worker consensus
     volumes:
       - cvat_data:/home/django/data

@@ -10,6 +10,7 @@ import Layout from 'antd/lib/layout';
 import { Col, Row } from 'antd/lib/grid';
 import Title from 'antd/lib/typography/Title';
 import CVATLogo from 'components/common/cvat-logo';
+import ThemeProvider from 'components/theme-provider/theme-provider';
 import SVGSigningBackground from '../../assets/signing-background.svg';
 
 interface SignInLayoutComponentProps {
@@ -71,26 +72,29 @@ function SignInLayout(props: SignInLayoutComponentProps): JSX.Element {
         xxl: { span: 22 },
     };
     return (
-        <Layout>
-            <SVGSigningBackground className='cvat-signing-background' />
-            <Header className='cvat-signing-header'>
-                <Row className='cvat-signing-header-logo-wrapper' justify='center' align='middle'>
-                    <Col {...logoSizes}>
-                        <CVATLogo />
-                    </Col>
-                </Row>
-            </Header>
-            <Layout className='cvat-signing-layout'>
-                <Content>
-                    <Row justify='center' align='middle' style={{ height: '100%' }}>
-                        <Col {...titleSizes} className='cvat-signing-title'>
-                            <Title>{subtitle}</Title>
+        // the page has its own design, which does not depend on the selected theme
+        <ThemeProvider theme='light'>
+            <Layout data-theme='light'>
+                <SVGSigningBackground className='cvat-signing-background' />
+                <Header className='cvat-signing-header'>
+                    <Row className='cvat-signing-header-logo-wrapper' justify='center' align='middle'>
+                        <Col {...logoSizes}>
+                            <CVATLogo />
                         </Col>
-                        {children}
                     </Row>
-                </Content>
+                </Header>
+                <Layout className='cvat-signing-layout'>
+                    <Content>
+                        <Row justify='center' align='middle' style={{ height: '100%' }}>
+                            <Col {...titleSizes} className='cvat-signing-title'>
+                                <Title>{subtitle}</Title>
+                            </Col>
+                            {children}
+                        </Row>
+                    </Content>
+                </Layout>
             </Layout>
-        </Layout>
+        </ThemeProvider>
     );
 }
 

@@ -8,7 +8,7 @@
     flex-direction: column;
     min-width: 0;
     overflow: hidden auto;
-    background-color: #fff;
+    background-color: $background-color-1;
     padding: $grid-unit-size;
 }
 
@@ -217,7 +217,7 @@
 .cvat-audio-placeholder {
     text-align: center;
     padding: 60px 20px;
-    background-color: white;
+    background-color: $background-color-1;
     border-radius: $grid-unit-size;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 10%);
 }

@@ -22,6 +22,8 @@ import {
     TeamOutlined,
     PlusOutlined,
     MailOutlined,
+    MoonOutlined,
+    SunOutlined,
 } from '@ant-design/icons';
 import Layout from 'antd/lib/layout';
 import Button from 'antd/lib/button';
@@ -43,6 +45,7 @@ import { useIsMounted, usePlugins } from 'utils/hooks';
 import GlobalHotKeys, { KeyMap } from 'utils/mousetrap-react';
 import { ShortcutScope } from 'utils/enums';
 import { subKeyMap } from 'utils/component-subkeymap';
+import { setTheme, useTheme } from 'utils/theme';
 import SettingsModal from './settings-modal/settings-modal';
 
 interface StateToProps {
@@ -179,6 +182,7 @@ function HeaderComponent(props: Props): JSX.Element {
     } = config;
 
     const isMounted = useIsMounted();
+    const theme = useTheme();
 
     useEffect(() => {
         if (isMounted()) {
@@ -491,6 +495,15 @@ function HeaderComponent(props: Props): JSX.Element {
                 ) : null}
             </div>
             <div className='cvat-right-header'>
+                <CVATTooltip overlay={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>
+                    <Button
+                        icon={theme === 'dark' ? <SunOutlined /> : <MoonOutlined />}
+                        size='large'
+                        className='cvat-switch-theme-button cvat-header-button'
+                        type='link'
+                        onClick={(): void => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                    />
+                </CVATTooltip>
                 <CVATTooltip overlay='Click to open repository'>
                     <Button
                         icon={<GithubOutlined />}
